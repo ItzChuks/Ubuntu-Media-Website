@@ -20,7 +20,7 @@ toggleNav();
 
 // active nav link, based on body[data-page]
 const currentPage = document.body.getAttribute('data-page');
-document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+document.querySelectorAll('.nav-links a[data-page], .mobile-links a[data-page]').forEach(a => {
   if(a.getAttribute('data-page') === currentPage){ a.classList.add('active'); }
 });
 
@@ -39,3 +39,25 @@ function attachGlow(sectionId, glowId){
 }
 attachGlow('hero','heroGlow');
 attachGlow('contact','ctaGlow');
+
+// mobile menu toggle
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+if(navToggle && mobileMenu){
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+    document.body.classList.remove('menu-open');
+  };
+  const openMenu = () => {
+    mobileMenu.classList.add('open');
+    navToggle.setAttribute('aria-expanded','true');
+    document.body.classList.add('menu-open');
+  };
+  navToggle.addEventListener('click', () => {
+    if(mobileMenu.classList.contains('open')){ closeMenu(); } else { openMenu(); }
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if(window.innerWidth > 860) closeMenu(); });
+}
