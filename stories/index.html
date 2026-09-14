@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Let's Tell Your Story | Ubuntu Media</title>
-<meta name="description" content="Get in touch with Ubuntu Media, an independent screen production and media company in Halifax, Nova Scotia.">
+<title>Stories | Ubuntu Media</title>
+<meta name="description" content="Short-form stories and videos from Ubuntu Media, Halifax, Nova Scotia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="stylesheet" href="../styles.css">
 </head>
-<body data-page="contact">
+<body data-page="stories">
 
 <div id="reel-progress"></div>
 
 <header class="site-nav solid" id="siteNav">
   <div class="wrap nav-row">
-    <a href="/" class="nav-mark"><img src="assets/logo.png" alt="Ubuntu Media" class="logo-img"></a>
+    <a href="/" class="nav-mark"><img src="../assets/logo.png" alt="Ubuntu Media" class="logo-img"></a>
     <ul class="nav-links">
       <li><a href="/about" data-page="about">About</a></li>
       <li><a href="/offer" data-page="offer">What We Offer</a></li>
@@ -48,42 +48,35 @@
 </div>
 
 <main>
-
-  <section class="cta-band" id="contact" style="min-height:78vh; display:flex; align-items:center; padding-top:180px;">
+  <section class="page-hero">
     <div class="grain"></div>
-    <div class="hero-glow" id="ctaGlow"></div>
-    <div class="wrap cta-inner">
-      <span class="tc">Let's Tell Your Story</span>
-      <h2>Let's tell<br>your story.</h2>
-      <p style="color: white;" class="lede">Whether you have a film to make, a brand to voice, or a moment worth keeping, we would like to hear it. That is where every Ubuntu Media project starts.</p>
-      <a href="mailto:israel@ubuntumedia.ca" class="btn">Email Us</a>
+    <div class="wrap">
+      <span class="tc">Short-Form</span>
+      <h1>Stories worth a few minutes.</h1>
+      <p class="lede">Clips, behind-the-scenes, and short pieces that don't fit neatly into a feed of their own.</p>
     </div>
   </section>
 
-  <section class="band dark" style="padding-top:80px;">
+  <section class="band" style="padding-top:90px;">
     <div class="wrap">
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h3>Get In Touch</h3>
-          <div class="contact-row">
-            <a href="mailto:israel@ubuntumedia.ca"><span>israel@ubuntumedia.ca</span><span class="k">Email</span></a>
-            <a href="https://instagram.com/israeliekanem" target="_blank" rel="noopener"><span>@israeliekanem</span><span class="k">Instagram</span></a>
-            <a href="https://instagram.com/ubuntumedia" target="_blank" rel="noopener"><span>@ubuntumedia</span><span class="k">Instagram</span></a>
-          </div>
-          <p class="contact-note">Based in Halifax, Nova Scotia. We work with broadcasters, brands, and communities near and far.</p>
-        </div>
-        <div class="contact-card">
-          <h3>Listen</h3>
-          <div class="contact-row">
-            <a href="https://myblackoutpodcast.com" target="_blank" rel="noopener"><span>myblackoutpodcast.com</span><span class="k">Blackout Podcast</span></a>
-            <a href="https://thisisthesanctuary.com" target="_blank" rel="noopener"><span>thisisthesanctuary.com</span><span class="k">The Sanctuary</span></a>
-          </div>
-          <p class="contact-note">Want a show of your own? Our podcast production service covers planning through network development, see <a href="/offer" style="color:var(--accent-soft);">What We Offer</a>.</p>
-        </div>
+      <div class="content-toolbar">
+        <div class="content-search"><input type="search" id="stories-search" placeholder="Search stories…"></div>
+      </div>
+      <div class="stories-grid" id="stories-grid">
+        <p class="lede">Loading stories…</p>
       </div>
     </div>
   </section>
 
+  <section class="cta-band" id="contact">
+    <div class="grain"></div>
+    <div class="hero-glow" id="ctaGlow"></div>
+    <div class="wrap cta-inner">
+      <h2>Have a story<br>in you?</h2>
+      <p style="color: white;" class="lede">We would like to hear it. That is where every Ubuntu Media project starts.</p>
+      <a href="/contact" class="btn">Let's Tell Your Story</a>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -127,6 +120,10 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="../js/config.js"></script>
+<script type="module" src="../js/appwrite-client.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/render.js"></script>
+<script src="../script.js"></script>
 </body>
 </html>

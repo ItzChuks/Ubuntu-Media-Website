@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Ubuntu Media</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+
+<!-- ===== LOGIN ===== -->
+<div class="admin-login-screen" id="loginScreen">
+  <form class="admin-login-card" id="loginForm">
+    <h1>Ubuntu Media</h1>
+    <p class="sub">Sign in to manage site content.</p>
+    <div class="admin-field">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required autocomplete="username">
+    </div>
+    <div class="admin-field">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" required autocomplete="current-password">
+    </div>
+    <p class="admin-login-error" id="loginError"></p>
+    <button type="submit" class="admin-submit-btn" style="width:100%;">Sign in</button>
+  </form>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" style="display:none;">
+  <div class="admin-topbar">
+    <div class="wrap">
+      <span class="admin-brand"><img src="assets/logo.png" alt=""> Admin</span>
+      <div class="admin-topbar-links">
+        <a href="/">View site</a>
+        <button id="signOutBtn" type="button">Sign out</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="board">Board members</button>
+      <button class="admin-tab" data-tab="events">Events</button>
+      <button class="admin-tab" data-tab="stories">Stories</button>
+      <button class="admin-tab" data-tab="podcasts">Podcasts</button>
+    </div>
+
+    <!-- ---------- BOARD MEMBERS ---------- -->
+    <div class="admin-panel active" id="panel-board">
+      <div class="admin-card">
+        <h2 id="boardFormTitle">Add a board member</h2>
+        <form id="boardForm">
+          <div class="admin-field">
+            <label for="boardName">Name</label>
+            <input type="text" id="boardName" required>
+          </div>
+          <div class="admin-field">
+            <label for="boardRole">Role</label>
+            <input type="text" id="boardRole" placeholder="e.g. President &amp; Director" required>
+          </div>
+          <div class="admin-field">
+            <label for="boardBio">Bio</label>
+            <textarea id="boardBio"></textarea>
+          </div>
+          <div class="admin-field">
+            <label for="boardPhoto">Photo</label>
+            <input type="file" id="boardPhoto" accept="image/*">
+          </div>
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-submit-btn" id="boardSubmitBtn">Save member</button>
+            <button type="button" class="link-btn" id="boardCancelEdit">Cancel edit</button>
+          </div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <div class="admin-list-header"><h2>Current board (<span id="boardCount">0</span>)</h2></div>
+        <div id="boardCurrentList"></div>
+      </div>
+    </div>
+
+    <!-- ---------- EVENTS ---------- -->
+    <div class="admin-panel" id="panel-events">
+      <div class="admin-card">
+        <h2 id="eventFormTitle">Add an event</h2>
+        <form id="eventForm">
+          <div class="admin-field">
+            <label for="eventTitle">Event title</label>
+            <input type="text" id="eventTitle" required>
+          </div>
+          <div class="admin-field">
+            <label for="eventDateLabel">Date / time (optional)</label>
+            <input type="text" id="eventDateLabel" placeholder="e.g. Sat, Sept 12 · 6:00 PM">
+          </div>
+          <div class="admin-field">
+            <label for="eventDescription">Description</label>
+            <textarea id="eventDescription"></textarea>
+          </div>
+          <div class="admin-field">
+            <label for="eventPhotos">Photos (up to 5)</label>
+            <input type="file" id="eventPhotos" accept="image/*" multiple>
+            <div class="admin-photo-count" id="eventPhotoCount">0 / 5 photos attached</div>
+          </div>
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-submit-btn" id="eventSubmitBtn">Save event</button>
+            <button type="button" class="link-btn" id="eventCancelEdit">Cancel edit</button>
+          </div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <div class="admin-list-header"><h2>Current events (<span id="eventCount">0</span>)</h2></div>
+        <div id="eventCurrentList"></div>
+      </div>
+    </div>
+
+    <!-- ---------- STORIES ---------- -->
+    <div class="admin-panel" id="panel-stories">
+      <div class="admin-card">
+        <h2 id="storyFormTitle">Add a story</h2>
+        <form id="storyForm">
+          <div class="admin-field">
+            <label for="storyYoutubeLink">YouTube link</label>
+            <input type="url" id="storyYoutubeLink" placeholder="https://www.youtube.com/watch?v=..." required>
+          </div>
+          <div class="admin-field">
+            <label for="storyTitle">Title</label>
+            <input type="text" id="storyTitle" required>
+          </div>
+          <div class="admin-field">
+            <label for="storyDescription">Description</label>
+            <textarea id="storyDescription"></textarea>
+          </div>
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-submit-btn" id="storySubmitBtn">Save story</button>
+            <button type="button" class="link-btn" id="storyCancelEdit">Cancel edit</button>
+          </div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <div class="admin-list-header"><h2>Current stories (<span id="storyCount">0</span>)</h2></div>
+        <div id="storyCurrentList"></div>
+      </div>
+    </div>
+
+    <!-- ---------- PODCASTS ---------- -->
+    <div class="admin-panel" id="panel-podcasts">
+      <div class="admin-card">
+        <h2 id="podFormTitle">Add to the podcast</h2>
+        <form id="podForm">
+          <div class="admin-field">
+            <label>Listen links</label>
+            <div id="podLinksWrap"></div>
+            <button type="button" class="link-btn" id="podAddLink" style="margin-top:4px;">+ Add another link</button>
+          </div>
+          <p class="admin-hint">The first link sets the episode's cover style. Add YouTube, Spotify, Apple Podcasts, or paste any other embeddable player link (Captivate, Anchor, Buzzsprout, etc.) as "Other".</p>
+          <label class="admin-checkbox"><input type="checkbox" id="podIsPlaylist"> This is a playlist (a group of episodes)</label>
+          <div class="admin-field">
+            <label for="podPlaylistSelect">Part of a playlist (optional)</label>
+            <select id="podPlaylistSelect"><option value="">— Standalone episode —</option></select>
+          </div>
+          <div class="admin-field">
+            <label for="podTitle">Title / label</label>
+            <input type="text" id="podTitle" required>
+          </div>
+          <div class="admin-field">
+            <label for="podDescription">Description</label>
+            <textarea id="podDescription"></textarea>
+          </div>
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-submit-btn" id="podSubmitBtn">Save</button>
+            <button type="button" class="link-btn" id="podCancelEdit">Cancel edit</button>
+          </div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <div class="admin-list-header"><h2>On the podcast page (<span id="podCount">0</span>)</h2></div>
+        <div id="podCurrentList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script type="module" src="js/appwrite-client.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

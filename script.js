@@ -61,3 +61,20 @@ if(navToggle && mobileMenu){
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
   window.addEventListener('resize', () => { if(window.innerWidth > 860) closeMenu(); });
 }
+
+// generic loading feedback for primary call-to-action buttons/links —
+// gives immediate visual response while the browser navigates or opens
+// a mailto/external link. Admin dashboard buttons handle their own
+// loading state (see ui.js / admin.js) and aren't touched here.
+document.querySelectorAll('a.btn, a.nav-cta, a.mobile-cta').forEach((a) => {
+  a.addEventListener('click', () => {
+    if(a.classList.contains('is-loading')) return;
+    a.classList.add('is-loading');
+    const href = a.getAttribute('href') || '';
+    if(href.startsWith('mailto:') || href.startsWith('tel:') || a.target === '_blank'){
+      setTimeout(() => a.classList.remove('is-loading'), 1400);
+    }
+    // for a normal same-site navigation the class simply disappears
+    // with the page on unload — no timer needed.
+  });
+});

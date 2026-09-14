@@ -1,0 +1,117 @@
+{
+  "projectId": "6aa7d1ab876af73d2c75",
+  "projectName": "Ubuntu Media",
+  "endpoint": "https://fra.cloud.appwrite.io/v1",
+  "tablesDB": [
+    {
+      "$id": "ubuntu_content",
+      "name": "Ubuntu Media Content",
+      "enabled": true
+    }
+  ],
+  "tables": [
+    {
+      "$id": "board_members",
+      "databaseId": "ubuntu_content",
+      "name": "Board Members",
+      "enabled": true,
+      "rowSecurity": false,
+      "$permissions": [
+        "read(\"any\")",
+        "create(\"users\")",
+        "update(\"users\")",
+        "delete(\"users\")"
+      ],
+      "columns": [
+        { "key": "name", "type": "string", "size": 255, "required": true, "array": false },
+        { "key": "role", "type": "string", "size": 255, "required": true, "array": false },
+        { "key": "bio", "type": "string", "size": 2000, "required": false, "array": false },
+        { "key": "photo_file_id", "type": "string", "size": 255, "required": false, "array": false },
+        { "key": "order", "type": "integer", "required": false, "array": false, "default": 0 }
+      ],
+      "indexes": [
+        { "key": "order_idx", "type": "key", "attributes": ["order"], "orders": ["ASC"] }
+      ]
+    },
+    {
+      "$id": "events",
+      "databaseId": "ubuntu_content",
+      "name": "Events",
+      "enabled": true,
+      "rowSecurity": false,
+      "$permissions": [
+        "read(\"any\")",
+        "create(\"users\")",
+        "update(\"users\")",
+        "delete(\"users\")"
+      ],
+      "columns": [
+        { "key": "title", "type": "string", "size": 255, "required": true, "array": false },
+        { "key": "date_label", "type": "string", "size": 255, "required": false, "array": false },
+        { "key": "description", "type": "string", "size": 5000, "required": false, "array": false },
+        { "key": "photo_file_ids", "type": "string", "size": 255, "required": false, "array": true }
+      ],
+      "indexes": []
+    },
+    {
+      "$id": "stories",
+      "databaseId": "ubuntu_content",
+      "name": "Stories",
+      "enabled": true,
+      "rowSecurity": false,
+      "$permissions": [
+        "read(\"any\")",
+        "create(\"users\")",
+        "update(\"users\")",
+        "delete(\"users\")"
+      ],
+      "columns": [
+        { "key": "youtube_link", "type": "string", "size": 500, "required": true, "array": false },
+        { "key": "title", "type": "string", "size": 255, "required": true, "array": false },
+        { "key": "description", "type": "string", "size": 5000, "required": false, "array": false }
+      ],
+      "indexes": []
+    },
+    {
+      "$id": "podcast_episodes",
+      "databaseId": "ubuntu_content",
+      "name": "Podcast Episodes",
+      "enabled": true,
+      "rowSecurity": false,
+      "$permissions": [
+        "read(\"any\")",
+        "create(\"users\")",
+        "update(\"users\")",
+        "delete(\"users\")"
+      ],
+      "columns": [
+        { "key": "title", "type": "string", "size": 255, "required": true, "array": false },
+        { "key": "description", "type": "string", "size": 5000, "required": false, "array": false },
+        { "key": "is_playlist", "type": "boolean", "required": false, "array": false, "default": false },
+        { "key": "playlist_id", "type": "string", "size": 255, "required": false, "array": false },
+        { "key": "listen_platforms", "type": "string", "size": 50, "required": false, "array": true },
+        { "key": "listen_urls", "type": "string", "size": 2000, "required": false, "array": true }
+      ],
+      "indexes": []
+    }
+  ],
+  "buckets": [
+    {
+      "$id": "ubuntu_media_files",
+      "name": "Ubuntu Media Files",
+      "enabled": true,
+      "fileSecurity": false,
+      "maximumFileSize": 10000000,
+      "allowedFileExtensions": ["jpg", "jpeg", "png", "webp", "gif"],
+      "compression": "gzip",
+      "encryption": true,
+      "antivirus": true,
+      "$permissions": [
+        "read(\"any\")",
+        "create(\"users\")",
+        "update(\"users\")",
+        "delete(\"users\")"
+      ]
+    }
+  ]
+}
