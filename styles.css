@@ -702,3 +702,13 @@ a.btn.is-loading::after, a.nav-cta.is-loading::after, a.mobile-cta.is-loading::a
   .detail-body{ padding:26px 22px 32px; }
   .detail-media--round{ width:132px; height:132px; }
 }
+
+/* ---------- client request: justified body text ---------- */
+main p, main blockquote, main li, .lede, footer p, footer li{
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+}
+/* keep the centered CTA band and empty-state messages centered */
+.cta-band p, .cta-band blockquote, .content-empty{ text-align:center; hyphens:manual; }
